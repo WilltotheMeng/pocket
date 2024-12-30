@@ -5,7 +5,7 @@ import pandas as pd
 import json
 import copy
 
-TOURNAMENTS_URL = "https://play.limitlesstcg.com/tournaments/completed?game=POCKET&format=all&platform=all&type=online&time=1days&show=499"
+TOURNAMENTS_URL = "https://play.limitlesstcg.com/tournaments/completed?game=POCKET&format=all&platform=all&type=online&time=7days&show=499"
 ENDPOINT = "https://play.limitlesstcg.com"
 WINLOSS = 1
 DECKLIST_SUFFIX = "/decklist"
@@ -41,7 +41,7 @@ for url in tournaments_urls:
     
     # Gather links for the player's win-loss and the decklist
     # The decklist URL is just the win-loss URL with /decklist at the end
-    standings_rows = standings_table.find_all('tr', attrs = {'data-placing':True})
+    standings_rows = standings_table.find_all('tr', attrs = {'data-name':True})
     for row in standings_rows:
         player_urls.append(row.find_all("td")[WINLOSS].a["href"])
 print("Finished finding matchups and decklists")
